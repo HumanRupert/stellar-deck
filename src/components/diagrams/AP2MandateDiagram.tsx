@@ -26,20 +26,20 @@ const mandates = [
 
 export const AP2MandateDiagram = () => {
   return (
-    <div className="mt-2">
+    <div className="mt-1">
       <motion.div
-        className="text-center mb-3 px-4 py-2 bg-slate-100 rounded-lg inline-block"
+        className="text-center mb-2 px-3 py-1 bg-slate-100 rounded inline-block"
         initial={{ opacity: 0, y: -10 }}
         animate={{ opacity: 1, y: 0 }}
       >
-        <span className="font-semibold text-slate-700 text-sm">AP2 MANDATE TYPES</span>
+        <span className="font-semibold text-slate-700 text-xs">AP2 MANDATE TYPES</span>
       </motion.div>
 
-      <div className="grid grid-cols-3 gap-3">
+      <div className="grid grid-cols-3 gap-2">
         {mandates.map((mandate, i) => (
           <motion.div
             key={mandate.title}
-            className="rounded-xl p-3 border"
+            className="rounded-lg p-2 border"
             style={{
               backgroundColor: mandate.bgColor,
               borderColor: `${mandate.color}30`,
@@ -47,24 +47,20 @@ export const AP2MandateDiagram = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: i * 0.15, duration: 0.4 }}
-            whileHover={{
-              scale: 1.02,
-              boxShadow: `0 8px 25px ${mandate.color}20`
-            }}
           >
             <h4
-              className="font-bold text-xs mb-0.5"
+              className="font-bold text-xs mb-0"
               style={{ color: mandate.color }}
             >
               {mandate.title}
             </h4>
-            <p className="text-xs text-slate-500 mb-2">{mandate.subtitle}</p>
+            <p className="text-xs text-slate-500 mb-1">{mandate.subtitle}</p>
 
-            <ul className="space-y-1">
+            <ul className="space-y-0.5">
               {mandate.items.map((item, j) => (
                 <motion.li
                   key={j}
-                  className="flex items-start gap-1.5 text-xs text-slate-600"
+                  className="flex items-start gap-1 text-xs text-slate-600 leading-tight"
                   initial={{ opacity: 0, x: -10 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ delay: i * 0.15 + j * 0.1 + 0.2 }}

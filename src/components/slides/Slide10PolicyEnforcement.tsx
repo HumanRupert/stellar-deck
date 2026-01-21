@@ -7,18 +7,9 @@ const policyCode = `const agentPolicy = {
     daily: 100_000_000n,        // 100 USDC max/day
     perTransaction: 1_000_000n  // 1 USDC max/tx
   },
-
-  allowedRecipients: [
-    'G...*',                    // Verified providers only
-  ],
-
-  velocity: {
-    maxPerMinute: 10,
-    maxPerHour: 100
-  },
-
+  allowedRecipients: ['G...*'], // Verified providers only
+  velocity: { maxPerMinute: 10, maxPerHour: 100 },
   allowedAssets: ['USDC:GA5Z...', 'native'],
-
   logging: {
     destination: 'compliance.company.com',
     includeTaskContext: true
@@ -27,9 +18,9 @@ const policyCode = `const agentPolicy = {
 
 export const Slide10PolicyEnforcement = () => {
   return (
-    <section>
+    <section className="overflow-hidden">
       <motion.h2
-        className="text-3xl font-bold mb-2"
+        className="text-2xl font-bold mb-1"
         initial={{ opacity: 0, x: -20 }}
         animate={{ opacity: 1, x: 0 }}
       >
@@ -39,7 +30,7 @@ export const Slide10PolicyEnforcement = () => {
       </motion.h2>
 
       <motion.p
-        className="text-slate-600 mb-3"
+        className="text-slate-600 mb-2 text-sm"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 0.2 }}
@@ -50,7 +41,7 @@ export const Slide10PolicyEnforcement = () => {
       <CodeBlock code={policyCode} language="javascript" />
 
       <motion.p
-        className="text-center mt-3 font-bold text-slate-700 bg-slate-100 rounded-lg px-4 py-2 text-sm"
+        className="text-center mt-2 font-bold text-slate-700 bg-slate-100 rounded-lg px-3 py-1.5 text-xs"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 0.5 }}
