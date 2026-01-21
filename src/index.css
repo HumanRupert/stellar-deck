@@ -1,9 +1,5 @@
 @import "tailwindcss";
 
-/* Reveal.js base imports */
-@import "reveal.js/dist/reveal.css";
-@import "reveal.js/dist/theme/white.css";
-
 /* Custom theme variables */
 :root {
   --stellar-blue: #0052ff;
