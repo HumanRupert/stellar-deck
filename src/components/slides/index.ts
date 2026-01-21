@@ -1,0 +1,12 @@
+export { Slide01Title } from './Slide01Title';
+export { Slide02TheShift } from './Slide02TheShift';
+export { Slide03TheProblem } from './Slide03TheProblem';
+export { Slide04NxMFragmentation } from './Slide04NxMFragmentation';
+export { Slide05ProtocolGap } from './Slide05ProtocolGap';
+export { Slide06TheSolution } from './Slide06TheSolution';
+export { Slide07Architecture } from './Slide07Architecture';
+export { Slide08WhyStellar } from './Slide08WhyStellar';
+export { Slide09Authorization } from './Slide09Authorization';
+export { Slide10PolicyEnforcement } from './Slide10PolicyEnforcement';
+export { Slide11WhatWeBuild } from './Slide11WhatWeBuild';
+export { Slide12TheAsk } from './Slide12TheAsk';

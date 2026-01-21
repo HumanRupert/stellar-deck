@@ -1,0 +1,241 @@
+@import "tailwindcss";
+
+/* Reveal.js base imports */
+@import "reveal.js/dist/reveal.css";
+@import "reveal.js/dist/theme/white.css";
+
+/* Custom theme variables */
+:root {
+  --stellar-blue: #0052ff;
+  --stellar-purple: #7c3aed;
+  --stellar-cyan: #06b6d4;
+  --stellar-green: #10b981;
+  --stellar-orange: #f59e0b;
+  --stellar-dark: #1e293b;
+  --stellar-light: #f8fafc;
+}
+
+/* Global styles */
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+  overflow: hidden;
+  margin: 0;
+}
+
+/* Reveal.js overrides */
+.reveal {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+.reveal .slides {
+  text-align: left;
+}
+
+.reveal .slides section {
+  padding: 40px 60px;
+  height: 100%;
+  box-sizing: border-box;
+}
+
+.reveal h1, .reveal h2, .reveal h3 {
+  font-weight: 700;
+  color: var(--stellar-dark);
+  text-transform: none;
+  letter-spacing: -0.02em;
+}
+
+.reveal h1 {
+  font-size: 2.2em;
+  margin-bottom: 0.4em;
+}
+
+.reveal h2 {
+  font-size: 1.6em;
+  margin-bottom: 0.3em;
+}
+
+.reveal p, .reveal li {
+  color: #475569;
+  font-size: 0.8em;
+  line-height: 1.6;
+}
+
+.reveal ul, .reveal ol {
+  margin-left: 1em;
+}
+
+.reveal li {
+  margin-bottom: 0.25em;
+}
+
+.reveal strong {
+  color: var(--stellar-dark);
+}
+
+/* Slide backgrounds */
+.reveal .slide-background {
+  background: linear-gradient(135deg, #ffffff 0%, #f1f5f9 100%);
+}
+
+/* Progress bar */
+.reveal .progress {
+  height: 4px;
+  background: rgba(0, 82, 255, 0.1);
+}
+
+.reveal .progress span {
+  background: linear-gradient(90deg, var(--stellar-blue), var(--stellar-purple));
+}
+
+/* Controls */
+.reveal .controls {
+  color: var(--stellar-blue);
+}
+
+/* Custom table styles */
+.styled-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.7em;
+  margin: 0.8em 0;
+  background: white;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+}
+
+.styled-table th {
+  background: linear-gradient(135deg, var(--stellar-dark) 0%, #334155 100%);
+  color: white;
+  padding: 12px 16px;
+  text-align: left;
+  font-weight: 600;
+  font-size: 0.9em;
+}
+
+.styled-table td {
+  padding: 10px 16px;
+  border-bottom: 1px solid #e2e8f0;
+  color: #475569;
+}
+
+.styled-table tr:last-child td {
+  border-bottom: none;
+}
+
+.styled-table tr:hover td {
+  background: #f8fafc;
+}
+
+/* Code block styles */
+.code-block {
+  background: #1e293b;
+  border-radius: 12px;
+  padding: 16px;
+  overflow-x: auto;
+  font-family: 'JetBrains Mono', 'Fira Code', monospace;
+  font-size: 0.65em;
+  line-height: 1.5;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+}
+
+/* Glass morphism cards */
+.glass-card {
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  border-radius: 16px;
+  padding: 20px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+}
+
+/* Gradient text */
+.gradient-text {
+  background: linear-gradient(135deg, var(--stellar-blue) 0%, var(--stellar-purple) 50%, var(--stellar-cyan) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Animation utilities */
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+}
+
+@keyframes pulse-glow {
+  0%, 100% { box-shadow: 0 0 20px rgba(0, 82, 255, 0.3); }
+  50% { box-shadow: 0 0 40px rgba(0, 82, 255, 0.6); }
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+
+@keyframes gradient-shift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.animate-float {
+  animation: float 3s ease-in-out infinite;
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 2s ease-in-out infinite;
+}
+
+/* Slide transitions */
+.reveal .slides section.present {
+  opacity: 1;
+}
+
+/* Fragment animations */
+.reveal .fragment {
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.reveal .fragment.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.reveal .fragment:not(.visible) {
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f5f9;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
+
+/* Emoji overrides */
+.emoji-check {
+  color: #10b981;
+}
+
+.emoji-cross {
+  color: #ef4444;
+}
+
+.emoji-warning {
+  color: #f59e0b;
+}
