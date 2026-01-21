@@ -1,85 +1,73 @@
-import { motion } from 'framer-motion';
-import { GradientText } from '../effects';
-import { StyledTable, CheckMark, CrossMark, WarningMark } from '../ui';
-
-const comparisonRows = [
-  [
-    'Micropayment viable',
-    <><CrossMark /> $0.50+</>,
-    <><WarningMark /> $0.001</>,
-    <><CheckMark /> $0.00001</>
-  ],
-  [
-    'Predictable fees',
-    <><CrossMark /> Gas auctions</>,
-    <><WarningMark /> Priority fees</>,
-    <><CheckMark /> Flat 100 stroops</>
-  ],
-  [
-    'True finality',
-    <><CrossMark /> 15 min (reorg risk)</>,
-    <><CrossMark /> Reorg possible</>,
-    <><CheckMark /> 5 sec, final</>
-  ],
-  [
-    'Native multi-asset',
-    <><CrossMark /> ERC-20 contracts</>,
-    <><CrossMark /> SPL tokens</>,
-    <><CheckMark /> Protocol-level</>
-  ],
-  [
-    'Fiat off-ramps',
-    <><WarningMark /> Limited</>,
-    <><WarningMark /> Limited</>,
-    <><CheckMark /> 475K+ access points</>
-  ],
-];
-
-const mathRows = [
-  ['$0.01 API call', 'Fee > value', 'Fee = 0.0001% of value'],
-  ['1M daily agent txs', '$500K/day in gas', '$10/day'],
-];
-
 export const Slide08WhyStellar = () => {
+  const comparison = [
+    { req: 'Micropayment viable', eth: { val: '$0.50+', status: 'no' }, sol: { val: '$0.001', status: 'partial' }, stellar: { val: '$0.00001', status: 'yes' } },
+    { req: 'Predictable fees', eth: { val: 'Gas auctions', status: 'no' }, sol: { val: 'Priority fees', status: 'partial' }, stellar: { val: 'Flat 100 stroops', status: 'yes' } },
+    { req: 'True finality', eth: { val: '15 min (reorg risk)', status: 'no' }, sol: { val: 'Reorg possible', status: 'no' }, stellar: { val: '5 sec, final', status: 'yes' } },
+    { req: 'Native multi-asset', eth: { val: 'ERC-20 contracts', status: 'no' }, sol: { val: 'SPL tokens', status: 'no' }, stellar: { val: 'Protocol-level', status: 'yes' } },
+    { req: 'Fiat off-ramps', eth: { val: 'Limited', status: 'partial' }, sol: { val: 'Limited', status: 'partial' }, stellar: { val: '475K+ access points', status: 'yes' } },
+  ];
+
+  const StatusIcon = ({ status }: { status: string }) => {
+    if (status === 'yes') return <span style={{ color: '#00a67e' }}>✓</span>;
+    if (status === 'no') return <span style={{ color: '#e53e3e' }}>✗</span>;
+    return <span style={{ color: '#dd6b20' }}>⚠</span>;
+  };
+
   return (
-    <section className="overflow-hidden">
-      <motion.h2
-        className="text-2xl font-bold mb-2"
-        initial={{ opacity: 0, x: -20 }}
-        animate={{ opacity: 1, x: 0 }}
-      >
-        <GradientText colors={['#0052ff', '#06b6d4', '#10b981']}>
-          Purpose-Built for Payments
-        </GradientText>
-      </motion.h2>
+    <section>
+      <h2 style={{ color: '#0066ff' }}>Purpose-Built for Payments</h2>
 
-      <StyledTable
-        headers={['Requirement', 'Ethereum', 'Solana', 'Stellar']}
-        rows={comparisonRows}
-        className="mb-2"
-      />
+      <table className="slide-table" style={{ marginBottom: '20px' }}>
+        <thead>
+          <tr>
+            <th>Requirement</th>
+            <th>Ethereum</th>
+            <th>Solana</th>
+            <th>Stellar</th>
+          </tr>
+        </thead>
+        <tbody>
+          {comparison.map((row) => (
+            <tr key={row.req}>
+              <td style={{ fontWeight: 600 }}>{row.req}</td>
+              <td><StatusIcon status={row.eth.status} /> {row.eth.val}</td>
+              <td><StatusIcon status={row.sol.status} /> {row.sol.val}</td>
+              <td style={{ background: '#f0fdf4' }}><StatusIcon status={row.stellar.status} /> {row.stellar.val}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
 
-      <motion.div
-        className="mt-2"
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.5 }}
-      >
-        <h4 className="font-bold text-slate-700 mb-1 text-xs">The math:</h4>
-        <StyledTable
-          headers={['Scenario', 'Ethereum', 'Stellar']}
-          rows={mathRows}
-        />
-      </motion.div>
+      <div style={{ marginBottom: '16px' }}>
+        <p style={{ fontWeight: 600, marginBottom: '8px', fontSize: '15px' }}>The math:</p>
+        <table className="slide-table">
+          <thead>
+            <tr>
+              <th>Scenario</th>
+              <th>Ethereum</th>
+              <th>Stellar</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>$0.01 API call</td>
+              <td style={{ color: '#e53e3e' }}>Fee {'>'} value</td>
+              <td style={{ color: '#00a67e', fontWeight: 500 }}>Fee = 0.0001% of value</td>
+            </tr>
+            <tr>
+              <td>1M daily agent txs</td>
+              <td style={{ color: '#e53e3e' }}>$500K/day in gas</td>
+              <td style={{ color: '#00a67e', fontWeight: 500 }}>$10/day</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
 
-      <motion.p
-        className="text-center mt-2 font-bold text-blue-700 bg-blue-50 rounded-lg px-3 py-1.5 text-xs"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 0.7 }}
-      >
-        Stellar doesn't need EIP-3009. Native transfers are already programmable.
-      </motion.p>
+      <div style={{ background: '#eff6ff', border: '1px solid #bfdbfe', borderRadius: '8px', padding: '12px', textAlign: 'center' }}>
+        <p style={{ fontWeight: 600, color: '#1e40af', margin: 0, fontSize: '15px' }}>
+          Stellar doesn't need EIP-3009. Native transfers are already programmable.
+        </p>
+      </div>
     </section>
   );
 };

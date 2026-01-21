@@ -1,62 +1,55 @@
-import { motion } from 'framer-motion';
-import { GradientText } from '../effects';
-
-const useCases = [
-  { label: 'Data', desc: 'Pay for BTCUSD price feeds, SEC filings, market sentiment' },
-  { label: 'Compute', desc: 'Pay for on-demand GPU cycles, backtesting infrastructure' },
-  { label: 'Services', desc: 'Pay other agents for analysis, translation, specialized tasks' },
-  { label: 'Goods', desc: 'Pay for physical resources to complete objectives' },
-];
-
 export const Slide02TheShift = () => {
+  const useCases = [
+    { label: 'Data', desc: 'Pay for BTCUSD price feeds, SEC filings, market sentiment' },
+    { label: 'Compute', desc: 'Pay for on-demand GPU cycles, backtesting infrastructure' },
+    { label: 'Services', desc: 'Pay other agents for analysis, translation, specialized tasks' },
+    { label: 'Goods', desc: 'Pay for physical resources to complete objectives' },
+  ];
+
   return (
-    <section className="overflow-hidden">
-      <motion.h2
-        className="text-2xl font-bold mb-2"
-        initial={{ opacity: 0, x: -20 }}
-        animate={{ opacity: 1, x: 0 }}
-      >
-        <GradientText>Agents Are Becoming Economic Actors</GradientText>
-      </motion.h2>
+    <section>
+      <h2>Agents Are Becoming Economic Actors</h2>
 
-      <motion.p
-        className="text-slate-600 mb-3 text-sm"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 0.2 }}
-      >
+      <p style={{ marginBottom: '20px' }}>
         AI agents are graduating from answering questions to executing workflows that require payment:
-      </motion.p>
+      </p>
 
-      <div className="grid grid-cols-2 gap-2 mb-3">
-        {useCases.map((item, i) => (
-          <motion.div
-            key={item.label}
-            className="bg-white rounded-lg p-2 shadow-sm border border-slate-100 text-xs"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.3 + i * 0.1 }}
-            whileHover={{ scale: 1.02, boxShadow: '0 4px 15px rgba(0,0,0,0.1)' }}
-          >
-            <span className="font-bold text-blue-600">{item.label}:</span>
-            <span className="text-slate-600 ml-1">{item.desc}</span>
-          </motion.div>
+      <div style={{ display: 'flex', flexDirection: 'column', gap: '12px', marginBottom: '24px' }}>
+        {useCases.map((item) => (
+          <div key={item.label} style={{ display: 'flex', alignItems: 'baseline', gap: '12px' }}>
+            <span style={{
+              background: '#0066ff',
+              color: 'white',
+              padding: '4px 12px',
+              borderRadius: '4px',
+              fontSize: '14px',
+              fontWeight: 600,
+              minWidth: '80px',
+              textAlign: 'center',
+              display: 'inline-block'
+            }}>
+              {item.label}
+            </span>
+            <span style={{ fontSize: '16px', color: '#4a5568' }}>{item.desc}</span>
+          </div>
         ))}
       </div>
 
-      <motion.div
-        className="bg-slate-50 rounded-lg p-3 border-l-4 border-blue-500"
-        initial={{ opacity: 0, x: -20 }}
-        animate={{ opacity: 1, x: 0 }}
-        transition={{ delay: 0.7 }}
-      >
-        <p className="text-slate-700 mb-1 text-sm">
+      <div style={{
+        background: '#f7f8fc',
+        border: '1px solid #e2e8f0',
+        borderRadius: '8px',
+        padding: '16px',
+        marginBottom: '20px'
+      }}>
+        <p style={{ margin: 0, fontSize: '16px' }}>
           Think of an agent as an employee. Employees need to pay for things.
         </p>
-        <p className="font-bold text-slate-800 text-sm">
-          The bottleneck isn't intelligence. It's the ability to transact.
-        </p>
-      </motion.div>
+      </div>
+
+      <p style={{ fontSize: '18px', fontWeight: 600, color: '#1a1a2e', margin: 0 }}>
+        The bottleneck isn't intelligence. It's the ability to transact.
+      </p>
     </section>
   );
 };

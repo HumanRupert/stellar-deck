@@ -1,68 +1,48 @@
-import { motion } from 'framer-motion';
-import { GradientText } from '../effects';
-import { StyledTable } from '../ui';
-
-const deliverables = [
-  ['wdk-wallet-stellar', 'Full Tether WDK module for Stellar (SLIP-0010 derivation, USDC/EURC/PYUSD support, trustline management)'],
-  ['Semantic SDK for Stellar', 'x402-compatible negotiation, AP2 authorization, policy engine, audit logging'],
-  ['Framework Adapters', 'Google ADK, OpenAI SDK, LangChain, Claude MCP integrations'],
-  ['Agent Marketplace', 'KYC\'d agent registry, verified service providers, reputation system'],
-];
-
-const partnershipPoints = [
-  'Stellar added to Tether WDK as part of collaboration',
-  'Co-development on SDK and marketplace',
-  'Co-marketing for agentic payments use case',
-];
-
 export const Slide11WhatWeBuild = () => {
+  const deliverables = [
+    { component: 'wdk-wallet-stellar', desc: 'Full Tether WDK module for Stellar (SLIP-0010 derivation, USDC/EURC/PYUSD support, trustline management)' },
+    { component: 'Semantic SDK for Stellar', desc: 'x402-compatible negotiation, AP2 authorization, policy engine, audit logging' },
+    { component: 'Framework Adapters', desc: 'Google ADK, OpenAI SDK, LangChain, Claude MCP integrations' },
+    { component: 'Agent Marketplace', desc: "KYC'd agent registry, verified service providers, reputation system" },
+  ];
+
+  const partnership = [
+    'Stellar added to Tether WDK as part of collaboration',
+    'Co-development on SDK and marketplace',
+    'Co-marketing for agentic payments use case',
+  ];
+
   return (
-    <section className="overflow-hidden">
-      <motion.h2
-        className="text-2xl font-bold mb-2"
-        initial={{ opacity: 0, x: -20 }}
-        animate={{ opacity: 1, x: 0 }}
-      >
-        <GradientText>The Stellar Proposal</GradientText>
-      </motion.h2>
+    <section>
+      <h2>The Stellar Proposal</h2>
 
-      <motion.h3
-        className="font-bold text-slate-700 mb-1 text-sm"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 0.2 }}
-      >
-        Deliverables:
-      </motion.h3>
+      <p style={{ fontWeight: 600, marginBottom: '12px', fontSize: '16px' }}>Deliverables:</p>
 
-      <StyledTable
-        headers={['Component', 'Description']}
-        rows={deliverables}
-        className="mb-2"
-      />
+      <table className="slide-table" style={{ marginBottom: '20px' }}>
+        <thead>
+          <tr>
+            <th style={{ width: '220px' }}>Component</th>
+            <th>Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          {deliverables.map((row) => (
+            <tr key={row.component}>
+              <td style={{ fontWeight: 600, color: '#0066ff' }}>{row.component}</td>
+              <td>{row.desc}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
 
-      <motion.div
-        className="bg-gradient-to-r from-blue-50 to-purple-50 rounded-lg p-2 border border-blue-200"
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.5 }}
-      >
-        <h4 className="font-bold text-blue-700 mb-1 text-xs">Partnership Structure:</h4>
-        <ul className="space-y-0.5">
-          {partnershipPoints.map((point, i) => (
-            <motion.li
-              key={i}
-              className="flex items-center gap-1.5 text-slate-600 text-xs"
-              initial={{ opacity: 0, x: -10 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ delay: 0.6 + i * 0.1 }}
-            >
-              <span className="w-1 h-1 bg-blue-500 rounded-full" />
-              {point}
-            </motion.li>
+      <div style={{ background: 'linear-gradient(135deg, #eff6ff 0%, #f5f3ff 100%)', border: '1px solid #bfdbfe', borderRadius: '8px', padding: '16px' }}>
+        <p style={{ fontWeight: 600, color: '#1e40af', margin: '0 0 12px 0', fontSize: '15px' }}>Partnership Structure:</p>
+        <ul style={{ margin: 0, paddingLeft: '20px' }}>
+          {partnership.map((point, i) => (
+            <li key={i} style={{ fontSize: '14px', color: '#4a5568', marginBottom: '6px' }}>{point}</li>
           ))}
         </ul>
-      </motion.div>
+      </div>
     </section>
   );
 };

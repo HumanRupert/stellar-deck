@@ -1,72 +1,52 @@
-import { motion } from 'framer-motion';
-import { GradientText } from '../effects';
-import { StyledTable } from '../ui';
-
-const gaps = [
-  ['Guardrails & Policy', 'AI is stochastic. Finance is deterministic. No reconciliation layer.'],
-  ['Authorization', "Who authorized this payment? Who's liable? No proof of human intent."],
-  ['Visibility', 'Regulators see a black box. Need transparent, auditable transactions.'],
-  ['Payment Rails', 'Must be programmable, low-fee, predictable, instant. Current rails fail.'],
-];
-
 export const Slide03TheProblem = () => {
+  const gaps = [
+    { gap: 'Guardrails & Policy', why: 'AI is stochastic. Finance is deterministic. No reconciliation layer.' },
+    { gap: 'Authorization', why: "Who authorized this payment? Who's liable? No proof of human intent." },
+    { gap: 'Visibility', why: 'Regulators see a black box. Need transparent, auditable transactions.' },
+    { gap: 'Payment Rails', why: 'Must be programmable, low-fee, predictable, instant. Current rails fail.' },
+  ];
+
   return (
-    <section className="overflow-hidden">
-      <motion.h2
-        className="text-2xl font-bold mb-2"
-        initial={{ opacity: 0, x: -20 }}
-        animate={{ opacity: 1, x: 0 }}
-      >
-        <GradientText colors={['#ef4444', '#f59e0b', '#eab308']}>
-          Current Infrastructure Wasn't Built for Agents
-        </GradientText>
-      </motion.h2>
+    <section>
+      <h2>Current Infrastructure Wasn't Built for Agents</h2>
 
-      <motion.p
-        className="text-slate-600 font-medium mb-2 text-sm"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 0.2 }}
-      >
-        Missing pieces for autonomous AI transactions:
-      </motion.p>
+      <p style={{ marginBottom: '16px' }}>
+        <strong>Missing pieces for autonomous AI transactions:</strong>
+      </p>
 
-      <StyledTable
-        headers={['Gap', 'Why It Matters']}
-        rows={gaps}
-        className="mb-2"
-      />
+      <table className="slide-table" style={{ marginBottom: '20px' }}>
+        <thead>
+          <tr>
+            <th style={{ width: '180px' }}>Gap</th>
+            <th>Why It Matters</th>
+          </tr>
+        </thead>
+        <tbody>
+          {gaps.map((row) => (
+            <tr key={row.gap}>
+              <td style={{ fontWeight: 600 }}>{row.gap}</td>
+              <td>{row.why}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
 
-      <div className="grid grid-cols-2 gap-2 mt-2">
-        <motion.div
-          className="bg-red-50 rounded-lg p-2 border border-red-100"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.5 }}
-        >
-          <p className="font-bold text-red-700 text-xs mb-0.5">Fiat rails</p>
-          <p className="text-red-600 text-xs">Too slow (days), too expensive (2-3% + fixed fees)</p>
-        </motion.div>
-
-        <motion.div
-          className="bg-orange-50 rounded-lg p-2 border border-orange-100"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.6 }}
-        >
-          <p className="font-bold text-orange-700 text-xs mb-0.5">Traditional chains</p>
-          <p className="text-orange-600 text-xs">Fee volatility, long finality, gas complexity</p>
-        </motion.div>
+      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px', marginBottom: '20px' }}>
+        <div style={{ background: '#fef2f2', border: '1px solid #fecaca', borderRadius: '8px', padding: '12px' }}>
+          <p style={{ fontWeight: 600, color: '#dc2626', margin: '0 0 4px 0', fontSize: '15px' }}>Fiat rails</p>
+          <p style={{ color: '#7f1d1d', margin: 0, fontSize: '14px' }}>Too slow (days), too expensive (2-3% + fixed fees)</p>
+        </div>
+        <div style={{ background: '#fffbeb', border: '1px solid #fde68a', borderRadius: '8px', padding: '12px' }}>
+          <p style={{ fontWeight: 600, color: '#d97706', margin: '0 0 4px 0', fontSize: '15px' }}>Traditional chains</p>
+          <p style={{ color: '#92400e', margin: 0, fontSize: '14px' }}>Fee volatility, long finality, gas complexity</p>
+        </div>
       </div>
 
-      <motion.p
-        className="text-center mt-2 font-bold text-slate-700 bg-slate-100 rounded-lg px-3 py-1.5 text-sm"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 0.8 }}
-      >
-        Almost all agent transactions will be micropayments settling in seconds, not days.
-      </motion.p>
+      <div style={{ background: '#f7f8fc', borderRadius: '8px', padding: '12px', textAlign: 'center' }}>
+        <p style={{ fontWeight: 600, margin: 0, fontSize: '16px' }}>
+          Almost all agent transactions will be micropayments settling in seconds, not days.
+        </p>
+      </div>
     </section>
   );
 };

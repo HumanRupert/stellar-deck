@@ -1,99 +1,58 @@
-import { motion } from 'framer-motion';
-import { GradientText, ShinyText } from '../effects';
-import { Aurora, FloatingParticles } from '../effects';
-
-const whatWeNeed = [
-  'Technical partnership for wdk-wallet-stellar development',
-  'Anchor introductions (Circle, MoneyGram) for off-ramp integration',
-  'Grants/funding consideration',
-  'Co-announcement: "Stellar: The Payment Rail for AI Agents"',
-];
-
-const whatStellarGets = [
-  'First-mover position in agentic payments',
-  'Tether WDK integration',
-  'Agent transaction volume from framework ecosystem',
-  'Enterprise credibility via compliance layer',
-];
-
 export const Slide12TheAsk = () => {
+  const whatWeNeed = [
+    'Technical partnership for wdk-wallet-stellar development',
+    'Anchor introductions (Circle, MoneyGram) for off-ramp integration',
+    'Grants/funding consideration',
+    'Co-announcement: "Stellar: The Payment Rail for AI Agents"',
+  ];
+
+  const whatStellarGets = [
+    'First-mover position in agentic payments',
+    'Tether WDK integration',
+    'Agent transaction volume from framework ecosystem',
+    'Enterprise credibility via compliance layer',
+  ];
+
   return (
-    <section className="relative overflow-hidden">
-      <Aurora colors={['#0052ff15', '#10b98115', '#7c3aed15']} blur={120} />
-      <FloatingParticles count={10} />
+    <section>
+      <h2 style={{ color: '#00a67e' }}>Let's Build the Settlement Layer for AI</h2>
 
-      <div className="relative z-10 flex flex-col h-full">
-        <motion.h2
-          className="text-2xl font-bold mb-2"
-          initial={{ opacity: 0, x: -20 }}
-          animate={{ opacity: 1, x: 0 }}
-        >
-          <GradientText colors={['#10b981', '#0052ff', '#7c3aed']}>
-            Let's Build the Settlement Layer for AI
-          </GradientText>
-        </motion.h2>
-
-        <div className="grid grid-cols-2 gap-3 mb-2 flex-1">
-          <motion.div
-            className="bg-white/80 backdrop-blur rounded-lg p-3 shadow-md border border-blue-200"
-            initial={{ opacity: 0, x: -30 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ delay: 0.2 }}
-          >
-            <h4 className="font-bold text-blue-700 mb-1 text-sm">What we need:</h4>
-            <ol className="space-y-1">
-              {whatWeNeed.map((item, i) => (
-                <motion.li
-                  key={i}
-                  className="flex items-start gap-1.5 text-slate-600 text-xs"
-                  initial={{ opacity: 0, x: -10 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: 0.3 + i * 0.1 }}
-                >
-                  <span className="font-bold text-blue-500 min-w-[14px]">{i + 1}.</span>
-                  {item}
-                </motion.li>
-              ))}
-            </ol>
-          </motion.div>
-
-          <motion.div
-            className="bg-white/80 backdrop-blur rounded-lg p-3 shadow-md border border-green-200"
-            initial={{ opacity: 0, x: 30 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ delay: 0.2 }}
-          >
-            <h4 className="font-bold text-green-700 mb-1 text-sm">What Stellar gets:</h4>
-            <ul className="space-y-1">
-              {whatStellarGets.map((item, i) => (
-                <motion.li
-                  key={i}
-                  className="flex items-start gap-1.5 text-slate-600 text-xs"
-                  initial={{ opacity: 0, x: 10 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: 0.3 + i * 0.1 }}
-                >
-                  <span className="w-1 h-1 bg-green-500 rounded-full mt-1.5 flex-shrink-0" />
-                  {item}
-                </motion.li>
-              ))}
-            </ul>
-          </motion.div>
+      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '24px', marginBottom: '24px' }}>
+        <div style={{ background: '#eff6ff', border: '1px solid #bfdbfe', borderRadius: '8px', padding: '20px' }}>
+          <h3 style={{ color: '#1e40af', margin: '0 0 16px 0', fontSize: '18px' }}>What we need:</h3>
+          <ol style={{ margin: 0, paddingLeft: '20px' }}>
+            {whatWeNeed.map((item, i) => (
+              <li key={i} style={{ fontSize: '14px', color: '#4a5568', marginBottom: '8px' }}>
+                {item}
+              </li>
+            ))}
+          </ol>
         </div>
 
-        <motion.div
-          className="bg-gradient-to-r from-slate-800 to-slate-900 text-white rounded-lg p-3 text-center mt-auto"
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.7 }}
-        >
-          <p className="mb-1 text-slate-300 text-xs">
-            The agentic economy needs rails that are instant, cheap, and verifiable.
-          </p>
-          <p className="text-sm font-bold">
-            <ShinyText>Stellar was built for exactly this.</ShinyText>
-          </p>
-        </motion.div>
+        <div style={{ background: '#ecfdf5', border: '1px solid #a7f3d0', borderRadius: '8px', padding: '20px' }}>
+          <h3 style={{ color: '#047857', margin: '0 0 16px 0', fontSize: '18px' }}>What Stellar gets:</h3>
+          <ul style={{ margin: 0, paddingLeft: '20px' }}>
+            {whatStellarGets.map((item, i) => (
+              <li key={i} style={{ fontSize: '14px', color: '#4a5568', marginBottom: '8px' }}>
+                {item}
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
+
+      <div style={{
+        background: '#1a1a2e',
+        borderRadius: '8px',
+        padding: '20px',
+        textAlign: 'center'
+      }}>
+        <p style={{ color: '#a0aec0', margin: '0 0 8px 0', fontSize: '15px' }}>
+          The agentic economy needs rails that are instant, cheap, and verifiable.
+        </p>
+        <p style={{ color: 'white', fontWeight: 700, margin: 0, fontSize: '20px' }}>
+          Stellar was built for exactly this.
+        </p>
       </div>
     </section>
   );

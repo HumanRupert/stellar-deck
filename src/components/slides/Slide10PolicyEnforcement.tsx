@@ -1,6 +1,4 @@
-import { motion } from 'framer-motion';
-import { GradientText } from '../effects';
-import { CodeBlock } from '../ui';
+import { Highlight, themes } from 'prism-react-renderer';
 
 const policyCode = `const agentPolicy = {
   budget: {
@@ -18,36 +16,42 @@ const policyCode = `const agentPolicy = {
 
 export const Slide10PolicyEnforcement = () => {
   return (
-    <section className="overflow-hidden">
-      <motion.h2
-        className="text-2xl font-bold mb-1"
-        initial={{ opacity: 0, x: -20 }}
-        animate={{ opacity: 1, x: 0 }}
-      >
-        <GradientText colors={['#f59e0b', '#ef4444', '#7c3aed']}>
-          AI is Stochastic. Finance is Deterministic.
-        </GradientText>
-      </motion.h2>
+    <section>
+      <h2 style={{ color: '#d97706' }}>AI is Stochastic. Finance is Deterministic.</h2>
 
-      <motion.p
-        className="text-slate-600 mb-2 text-sm"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 0.2 }}
-      >
+      <p style={{ marginBottom: '16px' }}>
         <strong>The SDK reconciles this with configurable guardrails:</strong>
-      </motion.p>
+      </p>
 
-      <CodeBlock code={policyCode} language="javascript" />
+      <div style={{ marginBottom: '20px' }}>
+        <Highlight theme={themes.nightOwl} code={policyCode} language="javascript">
+          {({ style, tokens, getLineProps, getTokenProps }) => (
+            <pre style={{
+              ...style,
+              padding: '20px',
+              borderRadius: '8px',
+              fontSize: '13px',
+              lineHeight: '1.5',
+              margin: 0,
+              overflow: 'auto'
+            }}>
+              {tokens.map((line, i) => (
+                <div key={i} {...getLineProps({ line })}>
+                  {line.map((token, key) => (
+                    <span key={key} {...getTokenProps({ token })} />
+                  ))}
+                </div>
+              ))}
+            </pre>
+          )}
+        </Highlight>
+      </div>
 
-      <motion.p
-        className="text-center mt-2 font-bold text-slate-700 bg-slate-100 rounded-lg px-3 py-1.5 text-xs"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 0.5 }}
-      >
-        Every transaction validated before execution. Every transaction logged for compliance.
-      </motion.p>
+      <div style={{ background: '#f7f8fc', border: '1px solid #e2e8f0', borderRadius: '8px', padding: '12px', textAlign: 'center' }}>
+        <p style={{ fontWeight: 600, margin: 0, fontSize: '16px', color: '#1a1a2e' }}>
+          Every transaction validated before execution. Every transaction logged for compliance.
+        </p>
+      </div>
     </section>
   );
 };
