@@ -18,45 +18,48 @@ import {
 
 function App() {
   const deckRef = useRef<HTMLDivElement>(null);
-  const revealRef = useRef<Reveal.Api | null>(null);
+  const initializedRef = useRef(false);
 
   useEffect(() => {
-    if (deckRef.current && !revealRef.current) {
-      revealRef.current = new Reveal(deckRef.current, {
-        hash: true,
-        slideNumber: 'c/t',
-        progress: true,
-        controls: true,
-        controlsTutorial: false,
-        transition: 'slide',
-        transitionSpeed: 'default',
-        backgroundTransition: 'fade',
-        width: 1280,
-        height: 720,
-        margin: 0.04,
-        minScale: 0.2,
-        maxScale: 2.0,
-        center: false,
-        embedded: false,
-        help: true,
-        mouseWheel: false,
-        hideInactiveCursor: true,
-        hideCursorTime: 3000,
-      });
+    // Prevent double initialization in StrictMode
+    if (initializedRef.current || !deckRef.current) return;
+    initializedRef.current = true;
 
-      revealRef.current.initialize();
-    }
+    const deck = new Reveal(deckRef.current, {
+      hash: true,
+      slideNumber: 'c/t',
+      progress: true,
+      controls: true,
+      controlsTutorial: false,
+      transition: 'slide',
+      transitionSpeed: 'default',
+      backgroundTransition: 'fade',
+      width: 1280,
+      height: 720,
+      margin: 0.04,
+      minScale: 0.2,
+      maxScale: 2.0,
+      center: false,
+      embedded: false,
+      help: true,
+      mouseWheel: false,
+      hideInactiveCursor: true,
+      hideCursorTime: 3000,
+    });
+
+    deck.initialize().then(() => {
+      // Force a layout sync after initialization
+      deck.sync();
+      deck.layout();
+    });
 
     return () => {
-      if (revealRef.current) {
-        revealRef.current.destroy();
-        revealRef.current = null;
-      }
+      deck.destroy();
     };
   }, []);
 
   return (
-    <div className="reveal" ref={deckRef}>
+    <div className="reveal" ref={deckRef} style={{ width: '100vw', height: '100vh' }}>
       <div className="slides">
         <Slide01Title />
         <Slide02TheShift />
